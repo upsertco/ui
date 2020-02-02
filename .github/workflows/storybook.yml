@@ -23,11 +23,7 @@ jobs:
       with:
         node-version: '13.x'
     - run: npm install
-    - run: npm run build-storybook --if-present
-    - name: Build and Deploy Storybook
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: storybook-static # The folder the action should deploy.
+    - run: npm run deploy-storybook -- --ci 
+      env:
+        GH_TOKEN: delianides:${{ secrets.ACCESS_TOKEN }}
     
