@@ -25,5 +25,5 @@ jobs:
     - run: npm install
     - run: npm run deploy-storybook -- --ci 
       env:
-        GH_TOKEN: delianides:${{ secrets.ACCESS_TOKEN }}
+        GH_TOKEN: delianides:${{ secrets.GITHUB_TOKEN }}
     
