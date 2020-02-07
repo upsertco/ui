@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
+      id: npm-modules
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -23,6 +24,7 @@ jobs:
       with:
         node-version: '13.x'
     - run: npm install
+      if: steps.npm-modules.outputs.cache-hit != 'true'
     - run: npm run deploy-storybook -- --ci 
       env:
         GH_TOKEN: delianides:${{ secrets.GITHUB_TOKEN }}
